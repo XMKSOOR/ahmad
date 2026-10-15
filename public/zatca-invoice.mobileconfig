@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>PayloadContent</key>
+    <array>
+        <dict>
+            <key>FullScreen</key>
+            <true/>
+            <key>Icon</key>
+            <data>iVBORw0KGgoAAAANSUhEUgAAALQAAAC0CAYAAAA9zQYyAAADsUlEQVR4nO3S240cVxBEwTGAptAUmUBHZBKtpKAPARS5O6x9TN/KnDhAfnfXRdxuh/vy7a8f1rXTph7a6ce1fTtt8s2dfjDL2Wmrdzv9OJa703b/1+nHsJ6BbJWD2eoGslUOZqsbzFY3mK1uMFvdYLa6AW1Vg9nqBrPVDWirGsxWN6CtajBb3YC2qsFsdQPaqga0VQ1mqxvQVrXLQEtAqyqgVRXQqgpoVQW0qroE9BUfAVo/gFZbQKsqoFUV0KoKaFUFtKoCWlUBraqAVlVAqyqgVRXQqgpoVQW0qgJaVQGtqoBWVUCrKqBVFdCqCmhVBbSqAlpVAa2qgA55yGf91223Ab3wtqR/3XYb0AtvS/rXbbcBvfC2pH/ddhvQC29L+tdttwG98Lakf912G9ALb0v61223Ab3wtqR/3XYb0AtvS/rXbbcBvfC2pH/ddhvQC29L+tdttwG98Lakf912G9ALb0v61223Ab3wtqR/3XYb0AtvS/rXbbcBvfC2pH/ddhvQC29L+tdttwG98Lakf912G9ALb0v61223Ab3wtqR/3XYb0AtvS/rXbbcBvfC2pH/ddhvQC29L+tdttwF9wW3f//7627b+66MDOrSXEL+2ZwrowN6C+dlQAx3WezA/E2qgg/oI5mdBDXRIn4H5GVADHRLQs4AOCehZQAf0mZjbUQMdENDzgA4I6HlABwT0PKADAnoe0CHBPAvokICeBXRIQM8COiiY/xzQYcF8P6ADg/n1gA4N5pcDOuQh7/XsiH8O6JCH1CygQx5Ss4AOeUjNAjrkITUL6JCH1CygQx5Ss4AOeUjNAjrkITUL6JCH1CygQx5Ss4AOeUjNAjrkITUL6JCH1CygQx5Ss4AOeUjNAjrkITUL6JCH1CygQx5Ss4AOeUjNAjrkITUL6JCH1CygQx5Ss4AOeUjNAlpVAa2qgFZVQKsqoFUV0KoKaFUFtKoCWlUBraqAVlVAqyqgVRXQqgpoVQW0qgJaVQGtqoBWVUCrKqBVFdCqCmhVBbSqAlpVXQL634DWFQGtqoBWVUCrKqBVFdCqqgq02RUD2qp2+6/TP2L20d1+7vTPmH10QFvVbr92+ofM3rvfMANtyXsRNNSWuFcxA22JuwsaakvaHzEDbUkbgYbaEjbGDLVt35sxA22b9y7QUNvGvRsz1LZtH8YMtW3Zp2GG2k7v0zFDbaf2MMxg25W7BDLUdsUuxwy2PWJHIf/a6cew3J22e7fTj2M5O231zZ1+MNu3R3r7B6NEN6CbOi/mAAAAAElFTkSuQmCC</data>
+            <key>IsRemovable</key>
+            <true/>
+            <key>Label</key>
+            <string>قارئ فواتير زاتكا</string>
+            <key>PayloadDescription</key>
+            <string>تطبيق قارئ رمز QR للفواتير السعودية الضريبية</string>
+            <key>PayloadDisplayName</key>
+            <string>قارئ فواتير زاتكا</string>
+            <key>PayloadIdentifier</key>
+            <string>com.zatca.qrreader.webclip</string>
+            <key>PayloadType</key>
+            <string>com.apple.webClip.managed</string>
+            <key>PayloadUUID</key>
+            <string>9B55-FFE6-7831-8ECC-A96B3873BF82</string>
+            <key>PayloadVersion</key>
+            <integer>1</integer>
+            <key>Precomposed</key>
+            <true/>
+            <key>URL</key>
+            <string>https://ais-dev-n7pih3g2ygd6o5giw5guc2-890673426079.europe-west2.run.app</string>
+        </dict>
+    </array>
+    <key>PayloadDisplayName</key>
+    <string>تثبيت قارئ فواتير زاتكا</string>
+    <key>PayloadIdentifier</key>
+    <string>com.zatca.qrreader.profile</string>
+    <key>PayloadOrganization</key>
+    <string>ZATCA QR Reader</string>
+    <key>PayloadRemovalDisallowed</key>
+    <false/>
+    <key>PayloadType</key>
+    <string>Configuration</string>
+    <key>PayloadUUID</key>
+    <string>E678-318E-CC89-9B55-A96B3873BF82</string>
+    <key>PayloadVersion</key>
+    <integer>1</integer>
+</dict>
+</plist>

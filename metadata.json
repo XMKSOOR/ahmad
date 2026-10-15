@@ -1,0 +1,7 @@
+{
+  "name": "قارئ رمز QR للفواتير السعودية",
+  "description": "امسح رموز QR من الفواتير الضريبية (صورة أو كاميرا) ونزّلها كملف إكسل.",
+  "capabilities": [
+    "MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"
+  ]
+}
