@@ -334,4 +334,11 @@ button.del {
   font-size: 0.85rem;
 }
 
+tfoot td {
+  background: var(--bg);
+  color: var(--text);
+  font-weight: 700;
+  border-top: 2px solid var(--border);
+  padding: 8px 4px;
+  text-align: center;
 }

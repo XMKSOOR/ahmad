@@ -285,25 +285,41 @@ export default function App() {
     setStatusMessage('تم فحص وتصحيح النصوص العربية بنجاح!');
   };
 
-  const totalSum = invoices.reduce((sum, item) => {
-    const val = typeof item.total === 'number' ? item.total : parseFloat(String(item.total));
-    return sum + (isNaN(val) ? 0 : val);
-  }, 0);
+  const totals = invoices.reduce(
+    (acc, item) => {
+      const taxableVal = typeof item.taxable === 'number' ? item.taxable : parseFloat(String(item.taxable));
+      const vatVal = typeof item.vat === 'number' ? item.vat : parseFloat(String(item.vat));
+      const totalVal = typeof item.total === 'number' ? item.total : parseFloat(String(item.total));
+      return {
+        taxable: acc.taxable + (isNaN(taxableVal) ? 0 : taxableVal),
+        vat: acc.vat + (isNaN(vatVal) ? 0 : vatVal),
+        total: acc.total + (isNaN(totalVal) ? 0 : totalVal),
+      };
+    },
+    { taxable: 0, vat: 0, total: 0 }
+  );
 
   const handleDownloadExcel = () => {
     if (!invoices.length) return;
-    const title = reportTitle.trim() || 'سجل المشتريات الضريبية';
+    const sheetName = (reportTitle.trim() || 'سجل المشتريات').slice(0, 31);
     
-    // Header & Content
+    // Clean exact table headers matching the table with no unwanted extra rows
     const aoa: (string | number)[][] = [
-      [title],
       ['م', 'اسم المورد', 'الرقم الضريبي', 'رقم الفاتورة', 'التاريخ', 'المبلغ الخاضع', 'الضريبة 15%', 'الإجمالي'],
     ];
+
+    let sumTaxable = 0;
+    let sumVat = 0;
+    let sumTotal = 0;
 
     invoices.forEach((inv, index) => {
       const taxableNum = typeof inv.taxable === 'number' ? inv.taxable : parseFloat(String(inv.taxable));
       const vatNum = typeof inv.vat === 'number' ? inv.vat : parseFloat(String(inv.vat));
       const totalNum = typeof inv.total === 'number' ? inv.total : parseFloat(String(inv.total));
+
+      if (!isNaN(taxableNum)) sumTaxable += taxableNum;
+      if (!isNaN(vatNum)) sumVat += vatNum;
+      if (!isNaN(totalNum)) sumTotal += totalNum;
 
       aoa.push([
         index + 1,
@@ -316,6 +332,18 @@ export default function App() {
         isNaN(totalNum) ? inv.total : totalNum,
       ]);
     });
+
+    // Add Totals row at the bottom of Excel sheet
+    aoa.push([
+      'الإجمالي',
+      `عدد الفواتير: ${invoices.length}`,
+      '',
+      '',
+      '',
+      Math.round(sumTaxable * 100) / 100,
+      Math.round(sumVat * 100) / 100,
+      Math.round(sumTotal * 100) / 100,
+    ]);
 
     const ws = XLSX.utils.aoa_to_sheet(aoa);
 
@@ -334,18 +362,14 @@ export default function App() {
       { wch: 18 }, // الإجمالي
     ];
 
-    // Merge title across columns
-    ws['!merges'] = [
-      { s: { r: 0, c: 0 }, e: { r: 0, c: 7 } },
-    ];
-
     const wb = XLSX.utils.book_new();
     wb.Workbook = {
       Views: [{ RTL: true }],
     };
 
-    XLSX.utils.book_append_sheet(wb, ws, 'المشتريات');
-    XLSX.writeFile(wb, 'ZATCA_Invoices.xlsx');
+    XLSX.utils.book_append_sheet(wb, ws, sheetName);
+    const fileName = (reportTitle.trim() || 'سجل_المشتريات_الضريبية').replace(/[/\\?%*:|"<>]/g, '_') + '.xlsx';
+    XLSX.writeFile(wb, fileName);
   };
 
   return (
@@ -597,6 +621,19 @@ export default function App() {
                   </tr>
                 ))}
               </tbody>
+              <tfoot>
+                <tr style={{ background: 'var(--bg)', fontWeight: 'bold' }}>
+                  <td>الإجمالي</td>
+                  <td>عدد الفواتير: {invoices.length}</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                  <td dir="ltr" style={{ fontWeight: 700 }}>{totals.taxable.toFixed(2)}</td>
+                  <td dir="ltr" style={{ fontWeight: 700 }}>{totals.vat.toFixed(2)}</td>
+                  <td dir="ltr" style={{ fontWeight: 700, color: 'var(--accent)' }}>{totals.total.toFixed(2)}</td>
+                  <td></td>
+                </tr>
+              </tfoot>
             </table>
           </div>
         ) : (
@@ -608,7 +645,7 @@ export default function App() {
         <div className="summary-row">
           <span id="summary">
             {invoices.length > 0
-              ? `عدد الفواتير: ${invoices.length} — الإجمالي: ${totalSum.toFixed(2)} ر.س`
+              ? `عدد الفواتير: ${invoices.length} — الإجمالي: ${totals.total.toFixed(2)} ر.س`
               : ''}
           </span>
           <button
